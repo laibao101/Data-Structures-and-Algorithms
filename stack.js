@@ -39,6 +39,10 @@ function length() {
         return this.top;
 }
 
+function toString(){
+        return this.dataStore;
+}
+
 // let s=new Stack();
 // s.push("David");
 // s.push("Raymond");
@@ -118,25 +122,43 @@ function length() {
 
 */
 
-function factorial(n){
-        const s=new Stack();
-        while(n>1){
-                s.push(n--);
-        }
-        let product=1;
-        while(s.length()>0){
-                product*=s.pop();
-        }
-        return product;
+// function factorial(n){
+//         const s=new Stack();
+//         while(n>1){
+//                 s.push(n--);
+//         }
+//         let product=1;
+//         while(s.length()>0){
+//                 product*=s.pop();
+//         }
+//         return product;
 
+// }
+
+// console.log(factorial(5))
+
+
+/*
+       4.exercise1
+
+*/
+
+
+function checkFormula (formula){
+        const str=formula.toString();
+        const s=new Stack();
+        const pattern=/[()]/g;
+        const items=str.match(pattern);
+        for(const item of items){
+                s.push(item)
+        }
+        if(s.length()%2!=0){
+                console.log(s.peek())
+        }else{
+                console.log("符号匹配");
+        }
 }
 
-console.log(factorial(5))
-
-
-
-
-
-
+const formula=checkFormula`2.3 + 23 / 12 + (3.14159×0.24`;
 
 
