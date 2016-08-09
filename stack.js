@@ -113,9 +113,25 @@ function length() {
 // const word1="racecar";
 // console.log( isPalindrome( word1 ) );
 
+/*
+       3.factorial
 
+*/
 
+function factorial(n){
+        const s=new Stack();
+        while(n>1){
+                s.push(n--);
+        }
+        let product=1;
+        while(s.length()>0){
+                product*=s.pop();
+        }
+        return product;
 
+}
+
+console.log(factorial(5))
 
 
 
