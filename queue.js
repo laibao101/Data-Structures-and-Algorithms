@@ -144,10 +144,10 @@ function print(item,...values){
 
 function distribute(nums,queues,n,digit){
 	for(const item of nums){
-		if(digit==1){
+		if(item/digit<1){
 			queues[item%10].enqueue(item);
 		}else{
-			queues[Math.floor(item/10)].enqueue(item);
+			queues[Math.floor(item/digit)].enqueue(item);
 		}
 	}
 }
@@ -167,6 +167,21 @@ function dispArray(nums){
 	}
 }
 
+function checkTheHighest(arr){
+	let max=arr[0];
+	for(item of arr){
+		if(item>max){
+			max=item;
+		}
+	}
+	let count=0;
+	while(max>1){
+		max/=10;
+		count++;
+	}
+	return count;
+}
+
 
 const queues = [];
  for (let i = 0; i < 10; ++i) {
@@ -174,15 +189,27 @@ const queues = [];
  }
  const nums = [];
  for (let i = 0; i < 10; ++i) {
-	nums[i] = Math.floor(Math.floor(Math.random() * 101)); 
+	nums[i] = Math.floor(Math.floor(Math.random() * 1001)); 
 }
  print("Before radix sort: ");
  dispArray(nums);
- distribute(nums, queues, 10, 1);
- collect(queues, nums);
- distribute(nums, queues, 10, 10);
- collect(queues, nums);
+const max=checkTheHighest(nums);
+print(max);
+
+const aQ=[];
+for(let i=0; i<max; i++){
+	aQ.push(new Queue() );
+}
+
+
+ // distribute(nums, queues, 10, 1);
+ // collect(queues, nums);
+ // distribute(nums, queues, 10, 10);
+ // collect(queues, nums);
+
+
  print("\n\nAfter radix sort: ");
  dispArray(nums);
+
 
 
