@@ -25,19 +25,19 @@ function enqueue(element){
 	this.dataStore.push(element)
 }
 
-function dequeue(){
-	//use two varibale , use min to save the smallest code which is used to express the priority. use priority to record the smallest code ` place.
+// function dequeue(){
+// 	//use two varibale , use min to save the smallest code which is used to express the priority. use priority to record the smallest code ` place.
 
-	let min=this.dataStore[0].code;
-	let priority=0;
-	for(const [index,item] of this.dataStore.entries()){
-		if(item.code<min){
-			min=item.code;
-			priority=index;
-		}
-	}
-	return this.dataStore.splice(priority,1);
-}
+// 	let min=this.dataStore[0].code;
+// 	let priority=0;
+// 	for(const [index,item] of this.dataStore.entries()){
+// 		if(item.code<min){
+// 			min=item.code;
+// 			priority=index;
+// 		}
+// 	}
+// 	return this.dataStore.splice(priority,1);
+// }
 
 function front(){
 	return this.dataStore[0];
@@ -87,6 +87,7 @@ p = new Patient("Brown",1);
 ed.enqueue(p);
 p = new Patient("Ingram",1);
 ed.enqueue(p);
+
 print(ed.toString());
 let seen = ed.dequeue();
 console.log("Patient being treated: " + seen[0].name);
@@ -105,8 +106,26 @@ console.log(ed.toString());
 
 
 
+/*
+	1.make change , the code is bigger , the priority is more imporant  
+	based on the exit queue , change the dequeue method 
+*/
 
 
+
+function dequeue(){
+	//use two varibale , use max to save the biggest code which is used to express the priority. use priority to record the smallest code ` place.
+
+	let max=this.dataStore[0].code;
+	let priority=0;
+	for(const [index,item] of this.dataStore.entries()){
+		if(item.code>max){
+			max=item.code;
+			priority=index;
+		}
+	}
+	return this.dataStore.splice(priority,1);
+}
 
 
 
