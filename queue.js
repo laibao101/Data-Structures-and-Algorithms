@@ -142,64 +142,64 @@ function print(item,...values){
 */
 
 
-function distribute(nums,queues,n,digit){
-	for(const item of nums){
-		if(item/digit<1){
-			queues[item%10].enqueue(item);
-		}else{
-			queues[Math.floor(item/digit)].enqueue(item);
-		}
-	}
-}
+// function distribute(nums,queues,n,digit){
+// 	for(const item of nums){
+// 		if(item/digit<1){
+// 			queues[item%10].enqueue(item);
+// 		}else{
+// 			queues[Math.floor(item/digit)].enqueue(item);
+// 		}
+// 	}
+// }
 
-function collect(queues,nums){
-	let i=0;
-	for (var digit = 0; digit < 10; ++digit) {
-       while (!queues[digit].empty()) {
-           nums[i++] = queues[digit].dequeue();
-       }
-   	}
-}
+// function collect(queues,nums){
+// 	let i=0;
+// 	for (var digit = 0; digit < 10; ++digit) {
+//        while (!queues[digit].empty()) {
+//            nums[i++] = queues[digit].dequeue();
+//        }
+//    	}
+// }
 
-function dispArray(nums){
-	for(const item of nums){
-		print(item + "  ");
-	}
-}
+// function dispArray(nums){
+// 	for(const item of nums){
+// 		print(item + "  ");
+// 	}
+// }
 
-function checkTheHighest(arr){
-	let max=arr[0];
-	for(item of arr){
-		if(item>max){
-			max=item;
-		}
-	}
-	let count=0;
-	while(max>1){
-		max/=10;
-		count++;
-	}
-	return count;
-}
+// function checkTheHighest(arr){
+// 	let max=arr[0];
+// 	for(item of arr){
+// 		if(item>max){
+// 			max=item;
+// 		}
+// 	}
+// 	let count=0;
+// 	while(max>1){
+// 		max/=10;
+// 		count++;
+// 	}
+// 	return count;
+// }
 
 
-const queues = [];
- for (let i = 0; i < 10; ++i) {
-    queues[i] = new Queue();
- }
- const nums = [];
- for (let i = 0; i < 10; ++i) {
-	nums[i] = Math.floor(Math.floor(Math.random() * 1001)); 
-}
- print("Before radix sort: ");
- dispArray(nums);
-const max=checkTheHighest(nums);
-print(max);
+// const queues = [];
+//  for (let i = 0; i < 10; ++i) {
+//     queues[i] = new Queue();
+//  }
+//  const nums = [];
+//  for (let i = 0; i < 10; ++i) {
+// 	nums[i] = Math.floor(Math.floor(Math.random() * 1001)); 
+// }
+//  print("Before radix sort: ");
+//  dispArray(nums);
+// const max=checkTheHighest(nums);
+// print(max);
 
-const aQ=[];
-for(let i=0; i<max; i++){
-	aQ.push(new Queue() );
-}
+// const aQ=[];
+// for(let i=0; i<max; i++){
+// 	aQ.push(new Queue() );
+// }
 
 
  // distribute(nums, queues, 10, 1);
@@ -208,8 +208,10 @@ for(let i=0; i<max; i++){
  // collect(queues, nums);
 
 
- print("\n\nAfter radix sort: ");
- dispArray(nums);
+ // print("\n\nAfter radix sort: ");
+ // dispArray(nums);
+
+
 
 
 
