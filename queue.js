@@ -142,39 +142,27 @@ function print(item,...values){
 */
 
 
-// function distribute(nums,queues,n,digit){
-// 	for(const item of nums){
-// 		if(item/digit<1){
-// 			queues[item%10].enqueue(item);
-// 		}else{
-// 			queues[Math.floor(item/digit)].enqueue(item);
-// 		}
-// 	}
-// }
 
 
 function distribute(aQ, queues){
 	
 	for(const item of aQ){
-		// if(item/digit<1){
-		// 	queues[item%10].enqueue(item);
-		// }else{
-		// 	queues[Math.floor(item/digit)].enqueue(item);
-		// }
 		queues[item[0]].enqueue(item[1]);
 	}
 }
 
 
 
+
 function collect(queues,nums){
 	let i=0;
-	for (var digit = 0; digit < 10; ++digit) {
+	for (let digit = 0; digit < 10; ++digit) {
        while (!queues[digit].empty()) {
            nums[i++] = queues[digit].dequeue();
        }
    	}
 }
+
 
 function dispArray(nums){
 	for(const item of nums){
@@ -197,7 +185,6 @@ function checkTheHighest(arr){
 	return count;
 }
 
-
 const queues = [];
  for (let i = 0; i < 10; ++i) {
     queues[i] = new Queue();
@@ -206,51 +193,37 @@ const queues = [];
  for (let i = 0; i < 10; ++i) {
 	nums[i] = Math.floor(Math.floor(Math.random() * 1001)); 
 }
- // print("Before radix sort: ");
- // dispArray(nums);
+
 const max=checkTheHighest(nums);
-print(max);
 
 const aQ=[];
 for(let i=0; i<max; i++){
 	aQ.push(new Queue() );
 }
 
-print(nums);
+
+
+
 
 for(let item of nums){
 	let str=item.toString();
 	if(str.length<max){
 		str="0".repeat(max-str.length)+str;
 	}
-	for(let i=0; i<max; i++){
-		aQ[i].enqueue( [Number(str[i]),item] );
+	for(let i=max-1,index=0; i>=0; i--,index++){
+		aQ[index].enqueue( [Number(str[i]),item] );
 	}
 }
 
-print(aQ);
 
-distribute(aQ[2].dataStore, queues);
-collect(queues, nums);
+
+
+for(const item of aQ){
+	distribute(item.dataStore, queues);
+	collect(queues, nums);
+}
 dispArray(nums);
 
-print("-------------")
-distribute(aQ[1].dataStore, queues);
-collect(queues, nums);
- dispArray(nums);
-print("-------------")
-distribute(aQ[0].dataStore, queues);
-collect(queues, nums);
- // dispArray(nums);
-
- // distribute(nums, queues, 10, 1);
- // collect(queues, nums);
- // distribute(nums, queues, 10, 10);
- // collect(queues, nums);
-
-
- // print("\n\nAfter radix sort: ");
- // dispArray(nums);
 
 
 
