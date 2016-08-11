@@ -191,7 +191,7 @@ const queues = [];
  }
  const nums = [];
  for (let i = 0; i < 10; ++i) {
-	nums[i] = Math.floor(Math.floor(Math.random() * 1001)); 
+	nums[i] = Math.floor(Math.floor(Math.random() *1000)); 
 }
 
 const max=checkTheHighest(nums);
