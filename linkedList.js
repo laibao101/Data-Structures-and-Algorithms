@@ -15,6 +15,7 @@ function LList(){
 	this.insert=insert;
 	this.remove=remove;
 	this.display=display;
+	this.findPrevious=findPrevious;
 }
 
 
@@ -41,43 +42,53 @@ function insert(newElement,item){
 }
 
 function display(){
-	const currNode=this.head;
+	let currNode=this.head;
 	while( !( currNode.next == null) ){
 		print(currNode.next.element);
 		currNode=currNode.next;
 	}
 }
 
-function LList() {
-this.head = new Node("head");
-this.find = find;
-this.insert = insert;
-//this.remove = remove;
-this.display = display;
+
+function findPrevious(item){
+	let currNode=this.head;
+	while(!( currNode.next == null) && (currNode.next.element != item)){
+		currNode=currNode.next;
+	}
+	return currNode;
 }
-function find(item) {
-var currNode = this.head;
-while (currNode.element != item) {
-currNode = currNode.next;
+
+function remove(item){
+	const prevNode=this.findPrevious(item);
+	if(!(prevNode.next == null)){
+		// prevNode.next=this.head.next;
+		prevNode.next=prevNode.next.next;
+	}
 }
-return currNode;
-}
-function insert(newElement, item) {
-var newNode = new Node(newElement);
-var current = this.find(item);
-newNode.next = current.next;
-current.next = newNode;
-}
-function display() {
-var currNode = this.head;
-while (!(currNode.next == null)) {
-	print(currNode.next.element);
-currNode = currNode.next;
-}
-}
+
+
 // 主程序
-var cities = new LList();
-cities.insert("Conway", "head");
-cities.insert("Russellville", "Conway");
-cities.insert("Alma", "Russellville");
-cities.display()
+// const cities = new LList();
+// cities.insert("Conway", "head");
+// cities.insert("Russellville", "Conway");
+// cities.insert("Alma", "Russellville");
+// cities.display()
+
+
+
+
+/*
+	1.test remove 
+*/
+
+ var cities = new LList();
+     cities.insert("Conway", "head");
+     cities.insert("Russellville", "Conway");
+     cities.insert("Carlisle", "Russellville");
+     cities.insert("Alma", "Carlisle");
+     cities.display();
+     cities.remove("Carlisle");
+     print("---------------------")
+     cities.display();
+
+
