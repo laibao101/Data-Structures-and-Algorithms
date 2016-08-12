@@ -81,14 +81,14 @@ function remove(item){
 	1.test remove 
 */
 
- var cities = new LList();
-     cities.insert("Conway", "head");
-     cities.insert("Russellville", "Conway");
-     cities.insert("Carlisle", "Russellville");
-     cities.insert("Alma", "Carlisle");
-     cities.display();
-     cities.remove("Carlisle");
-     print("---------------------")
-     cities.display();
+const cities = new LList();
+cities.insert("Conway", "head");
+cities.insert("Russellville", "Conway");
+cities.insert("Carlisle", "Russellville");
+cities.insert("Alma", "Carlisle");
+cities.display();
+cities.remove("Carlisle");
+print("---------------------")
+cities.display();
 
 
