@@ -19,9 +19,13 @@ for(const item of arr){
 function threeKilled(list,node){
 	let currNode=node;
 	let count=1;
-	while(count<=2){
+	while(count<3){
+		if(currNode!=list.head){
+			count++;
+		}
 		currNode=currNode.next;
-		count++;
+
+		
 	}
 	print(currNode)
 	const next=currNode.next;
@@ -40,16 +44,13 @@ function getLength(list){
 	}
 	return count;
 }
-let pos=people.head.next;
+let pos=people.head;
 while(getLength(people)!=2){
-	while(pos.next!=people.head){
-		pos=threeKilled(people,pos);
-	}
-	pos=people.head.next;
-	print(getLength(people));
+	pos=threeKilled(people,pos);
+	
 }
 
 print(people);
 
-//so in the first and the 25th can not be killed
+//so in the 13th and the 28th can not be killed
 
