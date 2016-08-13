@@ -52,5 +52,5 @@ while(getLength(people)!=2){
 
 print(people);
 
-//so in the 13th and the 28th can not be killed
+//so in the first and the 32th can not be killed
 
