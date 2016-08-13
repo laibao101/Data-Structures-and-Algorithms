@@ -40,8 +40,8 @@ function display(){
 	}
 }
 
-function print(item,...values){
-	console.log(item,...values);
+function print(item, ...values) {
+	console.log(item, ...values);
 }
 
 function find(item){
