@@ -6,9 +6,18 @@ function HashTable() {
 	//this.get = get;
 }
 
-function put(data) {
+function put( data) {
 	const pos = this.simpleHash(data);
-	this.table[pos] = data;
+	let index=0;
+	if (typeof this.table[pos][index] == "undefined") {
+		this.table[pos][index] = data;
+	}
+	else {
+		while (typeof this.table[pos][index] != "undefined") {
+			++index;
+		}
+		this.table[pos][index + 1] = data;
+	}
 }
 
 function simpleHash(string) {
@@ -29,11 +38,11 @@ function print(item, ...values) {
 }
 
 function showDistro() {
-	var n = 0;
-	print(this.table)
-	for (var i = 0; i < this.table.length; ++i) {
-		if (this.table[i][0] != undefined) {
-			print(i + ": " + this.table[i]);
+	for (let i = 0; i < this.table.length; ++i) {
+		for(let j=0; j<this.table[i].length; j++){
+			if (typeof this.table[i][j] != "undefined") {
+				print(i + ": " + this.table[i][j]);
+			}
 		}
 	}
 }
@@ -95,17 +104,21 @@ function genStuData(arr) {
 
 
 
-var hTable = new HashTable();
+let hTable = new HashTable();
 hTable.buildChains = function() {
-	for (var i = 0; i < this.table.length; ++i) {
+	for (let i = 0; i < this.table.length; ++i) {
 		this.table[i] = new Array();
 	}
 }
-
-var someNames = ["David", "Jennifer", "Donnie", "Raymond",
+hTable.buildChains();
+let someNames = ["David", "Jennifer", "Donnie", "Raymond",
 	"Cynthia", "Mike", "Clayton", "Danny", "Jonathan"
 ];
-for (var i = 0; i < someNames.length; ++i) {
-	hTable.put(someNames[i]);
+
+
+
+for(const item of someNames){
+	hTable.put(item)
 }
+
 hTable.showDistro()
