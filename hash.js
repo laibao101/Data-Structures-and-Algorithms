@@ -12,7 +12,7 @@ function put(data) {
 }
 
 function simpleHash(string) {
-	const H = 31;
+	const H = 37;
 	let total = 0;
 	for (let i = 0; i < string.length; ++i) {
 		total += H * total + string.charCodeAt(i);
@@ -29,13 +29,14 @@ function print(item, ...values) {
 }
 
 function showDistro() {
-	for (const [index, item] of this.table.entries()) {
-		if (item != undefined) {
-			print(index + ": " + item)
+	var n = 0;
+	print(this.table)
+	for (var i = 0; i < this.table.length; ++i) {
+		if (this.table[i][0] != undefined) {
+			print(i + ": " + this.table[i]);
 		}
 	}
 }
-
 
 // const someNames = ["David", "Jennifer", "Donnie", "Raymond",
 // 	"Cynthia", "Mike", "Clayton", "Danny", "Jonathan"
@@ -72,21 +73,39 @@ function genStuData(arr) {
 }
 
 
-const numStudents = 10;
-const arrSize = 97;
-const idLen = 9;
-const students = new Array(numStudents);
-genStuData(students);
-print("Student data: \n");
-for (const item of Object.keys(students)) {
-	print(students[item].substring(0, 8) + " " +
-		students[item].substring(8));
-}
-print("\n\nData distribution: \n");
-const hTable = new HashTable();
-for (const item of Object.keys(students)) {
 
-	hTable.put(students[item]);
+// const numStudents = 10;
+// const arrSize = 97;
+// const idLen = 9;
+// const students = new Array(numStudents);
+// genStuData(students);
+// print("Student data: \n");
+// for (const item of Object.keys(students)) {
+// 	print(students[item].substring(0, 8) + " " +
+// 		students[item].substring(8));
+// }
+// print("\n\nData distribution: \n");
+// const hTable = new HashTable();
+// for (const item of Object.keys(students)) {
+
+// 	hTable.put(students[item]);
+// }
+// print(hTable)
+// hTable.showDistro();
+
+
+
+var hTable = new HashTable();
+hTable.buildChains = function() {
+	for (var i = 0; i < this.table.length; ++i) {
+		this.table[i] = new Array();
+	}
 }
-print(hTable)
-hTable.showDistro();
+
+var someNames = ["David", "Jennifer", "Donnie", "Raymond",
+	"Cynthia", "Mike", "Clayton", "Danny", "Jonathan"
+];
+for (var i = 0; i < someNames.length; ++i) {
+	hTable.put(someNames[i]);
+}
+hTable.showDistro()
