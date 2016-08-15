@@ -103,7 +103,7 @@ function genStuData(arr) {
 // hTable.showDistro();
 
 
-
+oInp
 let hTable = new HashTable();
 hTable.buildChains = function() {
 	for (let i = 0; i < this.table.length; ++i) {
@@ -121,7 +121,8 @@ for(const item of someNames){
 	hTable.put(item)
 }
 
-hTable.showDistro()
+hTable.oInpstro()
+
 
 
 

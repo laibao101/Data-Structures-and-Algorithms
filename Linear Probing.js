@@ -24,15 +24,17 @@ function put(key,data) {
 
 
 function get(key){
-	let hash=-1;
-	hash=this.simpleHash(key);
-	if(hase>-1){
-		for(const [index,item] of this.table.entries()){
+	// let hash=-1;
+	// if(hash>-1){
+		const keys=Object.keys(this.table);
+		for(const [index,item] of keys.entries()){
 			if(item==key){
-				return this.values[index];
+				hash= this.table[item];
+				return this.values[hash];
 			}
 		}
-	}
+		
+	// }
 	return "undefined";
 }
 
@@ -55,26 +57,66 @@ function print(item, ...values) {
 }
 
 function showDistro() {
-	for (let i = 0; i < this.table.length && ( typeof this.table[i]!= "undefined" ); ++i) {
-		const pos=this.table[i]
-		print(i + ": " + this.values[pos]);
+	for (let i = 0; i < this.table.length && ( typeof Object.keys(this.table)[i]!= "undefined" ); ++i) {
+		const tablePos=Object.keys(this.table)[i];
+		const pos=this.table[tablePos];
+		print(tablePos + ": " + this.values[pos]);
 	}
 }
 
-let hTable = new HashTable();
+// let hTable = new HashTable();
 
-let someNames = ["David", "Jennifer", "Donnie", "Raymond",
-	"Cynthia", "Mike", "Clayton", "Danny", "Jonathan"
-];
+// let someNames = ["David", "Jennifer", "Donnie", "Raymond",
+// 	"Cynthia", "Mike", "Clayton", "Danny", "Jonathan"
+// ];
 
 
 
-for(const [index,item] of someNames.entries()){
-	hTable.put(index,item)
+// for(const [index,item] of someNames.entries()){
+// 	hTable.put(index,item)
+// }
+
+
+// hTable.showDistro()
+
+// print(hTable.get("David"))
+
+
+/*
+	1.crate a dictionary to save words ang the interprets of them , to program must have two parts. the first one is 
+	to read a group words and the interprets ,put the into the table. The second one is show the interprets when 
+	user type a word into.
+*/
+
+
+const hTable=new HashTable();
+const words=read("words.txt");
+// print(words);
+for(let [index,item] of words.entries()){
+	words[index]=item.split("、")[1].split(":");
+}
+// print(words)
+
+for(const [index,item] of words.entries()){
+	hTable.put(item[0],item[1]);
 }
 
+// print(hTable);
+// hTable.showDistro();
 
-hTable.showDistro()
+// print(hTable.get("organized"))
+
+window.onload=function(){
+	const box=document.querySelector("#box");
+	const oInp=document.querySelector("input");
+	oInp.onkeyup=function(){
+		const val=this.value;
+		const res=hTable.get(val);
+		if( res !="undefined"){
+			box.innerHTML=res;
+		}
+	}
+}
 
 
 
