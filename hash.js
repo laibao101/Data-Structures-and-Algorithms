@@ -122,3 +122,15 @@ for(const item of someNames){
 }
 
 hTable.showDistro()
+
+
+
+
+
+
+
+
+
+
+
+
