@@ -19,8 +19,12 @@ function Set(){
 
 
 function add(data){
+	const temp=[...this.dataStore];
+
 	if(this.dataStore.indexOf(data)<0){
-		this.dataStore.push(data);
+		temp.push(data);
+		temp.sort();
+		this.dataStore=[...temp]
 		return true;
 	}else{
 		return false;
@@ -89,9 +93,7 @@ function contains(data){
 
 function union(set){
 	const tempSet=new Set();
-	for(const item of this.dataStore){
-		tempSet.add(item);
-	}
+	tempSet.dataStore=[...this.dataStore];
 	for(const item of set.dataStore){
 		if(!tempSet.contains(item)){
 			tempSet.dataStore.push(item)
@@ -164,16 +166,17 @@ function difference(set){
 // }
 
 const cis = new Set();
-const it = new Set();
+// const it = new Set();
 cis.add("Clayton");
 cis.add("Jennifer");
 cis.add("Danny");
-it.add("Bryan");
-it.add("Clayton");
-it.add("Jennifer");
-let diff = new Set();
-diff = cis.difference(it);
-print("[" + cis.show() + "] difference [" + it.show()+ "] -> [" + diff.show() + "]");
+cis.add("Bryan");
+cis.add("Clayton");
+cis.add("Jennifer");
+print(cis.show());
+// let diff = new Set();
+// diff = cis.difference(it);
+// print("[" + cis.show() + "] difference [" + it.show()+ "] -> [" + diff.show() + "]");
 
 
 
