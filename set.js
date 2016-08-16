@@ -178,7 +178,9 @@ print(cis.show());
 // diff = cis.difference(it);
 // print("[" + cis.show() + "] difference [" + it.show()+ "] -> [" + diff.show() + "]");
 
-
-
+const max=Number.MAX_SAFE_INTEGER;
+const min=Number.MIN_SAFE_INTEGER;
+print(Number.isSafeInteger(max))
+print(min)
 
 
