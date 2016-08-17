@@ -35,6 +35,7 @@ function BST(){
 	this.inDeep=inDeep;
 	this.nodeStack=[];
 	this.countWords=countWords;
+	this.lengthOfSides=lengthOfSides;
 }
 
 function print(val,...str){
@@ -294,6 +295,20 @@ function countWords(word){
 }
 
 
+function lengthOfSides(){
+	const arr=this.inDeep();
+	let count=0;
+	for(const item of arr){
+		if(item.lchild!=null){
+			count++
+			if(item.rchild!=null){
+				count++
+			}
+		}
+	}
+	return count;
+}
+
 const nums = new BST();
 nums.insert(30);
 nums.insert(45);
@@ -333,4 +348,5 @@ for(const item of arr){
 	nums.insert(item.trim());
 }
 
-print(nums.countWords("pen"))
+print(nums.countWords("pen"));
+print(nums.lengthOfSides())
