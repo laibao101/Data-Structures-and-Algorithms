@@ -30,6 +30,10 @@ function BST(){
 	this.hasLchild=hasLchild;
 	this.hasRchild=hasRchild;
 	this.isLeaves=isLeaves;
+	this.allNode=allNode;
+	this.count=0;
+	this.inDeep=inDeep;
+	this.nodeStack=[];
 }
 
 function print(val,...str){
@@ -37,6 +41,7 @@ function print(val,...str){
 }
 
 function insert(element){
+	this.count++;
 	const n=new Node(element,null,null);
 	if(this.root==null){
 		this.root=n;
@@ -121,6 +126,7 @@ function find(element){
 
 function remove(element){
 	if( this.find( element) == null) return false;
+	this.count--;
 	let current;
 	let parent=this.root;
 	if(element == parent.element){
@@ -246,8 +252,7 @@ function remove(element){
 
 		}
 	}
-	
-	return false;
+		
 }
 
 function hasLchild(node){
@@ -260,6 +265,21 @@ function hasRchild(node){
 
 function isLeaves(node){
 	return this.hasLchild(node)==false && this.hasRchild(node)==false ? true : false;
+}
+
+function allNode(){
+	return this.count;
+}
+
+function inDeep(node=this.root){
+	if(node!=null){
+		print(this)
+		this.nodeStack.push(node);
+		debugger;
+		this.inDeep(node.lchild);
+		this.inDeep(node.rchild);
+	}
+	return this.nodeStack;
 }
 
 
@@ -276,8 +296,8 @@ nums.insert(24);
 nums.insert(25);
 nums.insert(32);
 
-print("Inorder traversal: ");
-nums.inOrder();
+// print("Inorder traversal: ");
+// nums.inOrder();
 // print("Preorder traversal: ");
 // nums.preOrder();
 
@@ -287,12 +307,13 @@ nums.inOrder();
 print("the min is :", nums.getMin());
 print("the min is :", nums.getMax());
 
-print("the node include 3 is :", nums.find(4))
+print("the node include 3 is :", nums.find(3))
 print("the node 23 is leaves:", nums.isLeaves( nums.find(23) ))
 
-print( nums.remove( 45) );
-print( nums.remove( 4) );
+// print( nums.remove( 45) );
+// print( nums.remove( 4) );
 
 print("Inorder traversal: ");
 nums.inOrder();
 
+print("all node :  ",nums.inDeep())
