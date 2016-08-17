@@ -34,6 +34,7 @@ function BST(){
 	this.count=0;
 	this.inDeep=inDeep;
 	this.nodeStack=[];
+	this.countWords=countWords;
 }
 
 function print(val,...str){
@@ -273,15 +274,24 @@ function allNode(){
 
 function inDeep(node=this.root){
 	if(node!=null){
-		print(this)
 		this.nodeStack.push(node);
-		debugger;
 		this.inDeep(node.lchild);
 		this.inDeep(node.rchild);
 	}
 	return this.nodeStack;
 }
 
+
+function countWords(word){
+	const arr=this.inDeep();
+	let count=0;
+	for(const item of arr){
+		if(item.element==word){
+			count++;
+		}
+	}
+	return count;
+}
 
 
 const nums = new BST();
@@ -317,3 +327,10 @@ print("Inorder traversal: ");
 nums.inOrder();
 
 print("all node :  ",nums.inDeep())
+
+const arr=read("word.txt");
+for(const item of arr){
+	nums.insert(item.trim());
+}
+
+print(nums.countWords("pen"))
