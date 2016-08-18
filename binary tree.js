@@ -266,6 +266,7 @@ function hasRchild(node){
 }
 
 function isLeaves(node){
+	if(node==null) return ;
 	return this.hasLchild(node)==false && this.hasRchild(node)==false ? true : false;
 }
 
@@ -296,14 +297,16 @@ function countWords(word){
 
 
 function lengthOfSides(){
+	this.nodeStack=[];
 	const arr=this.inDeep();
 	let count=0;
 	for(const item of arr){
 		if(item.lchild!=null){
 			count++
-			if(item.rchild!=null){
-				count++
-			}
+			
+		}
+		if(item.rchild!=null){
+			count++;
 		}
 	}
 	return count;
@@ -343,10 +346,10 @@ nums.inOrder();
 
 print("all node :  ",nums.inDeep())
 
-const arr=read("word.txt");
-for(const item of arr){
-	nums.insert(item.trim());
-}
+// const arr=read("word.txt");
+// for(const item of arr){
+// 	nums.insert(item.trim());
+// }
 
-print(nums.countWords("pen"));
+// print(nums.countWords("pen"));
 print(nums.lengthOfSides())
