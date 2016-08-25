@@ -9,7 +9,8 @@ function CArray(numElements){
 	this.swap=swap;
 	for(let i=0; i<numElements; i++){
 		this.dataStore[i]=i;
-	}
+	};
+	this.bubbleSort=bubbleSort;
 }
 
 function print(val,...str){
@@ -42,11 +43,34 @@ function toString(){
 }
 
 function swap(arr,index1,index2){
-	arr[index1,index2]=arr[index2,index1];
+
+	[arr[index1],arr[index2]]=[arr[index2],arr[index1]];
 }
 
 
-const numElements=100;
+// const numElements=100;
+// const myNums=new CArray(numElements);
+// myNums.setData();
+// print( myNums.toString() );
+
+function bubbleSort(){
+	const numElements=this.dataStore.length;
+	for(let outer=numElements; outer>=2; outer--){
+		for(let inner=0; inner<=outer-1; ++inner){
+			if(this.dataStore[inner] > this.dataStore[inner+1]){
+				swap(this.dataStore,inner,inner+1);
+			}
+		}
+		print(this.toString());
+
+	}
+}
+
+const numElements=10;
 const myNums=new CArray(numElements);
 myNums.setData();
+print(myNums.toString());
+myNums.bubbleSort();
 print( myNums.toString() );
+
+
