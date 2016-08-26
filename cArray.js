@@ -11,6 +11,7 @@ function CArray(numElements){
 		this.dataStore[i]=i;
 	};
 	this.bubbleSort=bubbleSort;
+	this.selectionSort=selectionSort;
 }
 
 function print(val,...str){
@@ -61,16 +62,41 @@ function bubbleSort(){
 				swap(this.dataStore,inner,inner+1);
 			}
 		}
-		print(this.toString());
+		// print(this.toString());
 
 	}
 }
+
+
+function selectionSort(){
+	let min=0;
+	for(let outer=0; outer< this.dataStore.length-1; outer++){
+		min=outer;
+		for(let inner=outer+1; inner<this.dataStore.length; inner++){
+			if(this.dataStore[min]>this.dataStore[inner]){
+				min=inner;
+			}
+		}
+		swap(this.dataStore, outer, min);
+	}
+}
+
 
 const numElements=10;
 const myNums=new CArray(numElements);
 myNums.setData();
 print(myNums.toString());
+console.time("time1");
 myNums.bubbleSort();
+console.timeEnd("time1");
 print( myNums.toString() );
 
+print("------------")
+
+myNums.setData();
+print(myNums.toString());
+console.time("time1");
+myNums.selectionSort();
+console.timeEnd("time1");
+print(myNums.toString());
 
