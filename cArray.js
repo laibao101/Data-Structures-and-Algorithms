@@ -12,6 +12,10 @@ function CArray(numElements){
 	};
 	this.bubbleSort=bubbleSort;
 	this.selectionSort=selectionSort;
+	this.insertionSort=insertionSort;
+	this.shellSort=shellSort;
+	this.gaps=[3,2,1];
+	this.setGaps=setGaps;
 }
 
 function print(val,...str){
@@ -82,21 +86,79 @@ function selectionSort(){
 }
 
 
-const numElements=10;
-const myNums=new CArray(numElements);
-myNums.setData();
-print(myNums.toString());
+function insertionSort(){
+	let min=0,inner;
+	for(let outer=0; outer<this.dataStore.length; outer++){
+		min=outer;
+		for( inner=outer;this.dataStore[inner]<this.dataStore[inner-1] && inner>0; inner--){
+			this.dataStore[inner]=this.dataStore[inner-1];
+		}
+		this.dataStore[inner]=this.dataStore[min];
+	}
+}
+
+function shellSort() {
+	for(let g=0; g<this.gaps.length; g++){
+		debugger;
+		for(let i=this.gaps[g]; i<this.dataStore.length; i++){
+			let temp=this.dataStore[i],j=0;
+			debugger;
+			for( j=i; j>=this.gaps[g]&&this.dataStore[j-this.gaps[g]] >temp; j-=this.gaps[g]){
+				this.dataStore[j]=this.dataStore[j-this.gaps[g]];
+				debugger;
+			}
+			this.dataStore[j]=temp;
+		}
+	}
+}
+
+
+
+function setGaps(arr){
+	this.gaps=arr;
+}
+
+// const numElements=100000000;  //1亿级别的数据量，只有插入排序还能在chrome上运行，耗时2000ms左右
+// const numElements=100000;  //1亿级别的数据量，只有插入排序还能在chrome上运行，耗时2000ms左右
+// const myNums=new CArray(numElements);
+// myNums.setData();
+// print(myNums.toString());
 console.time("time1");
-myNums.bubbleSort();
+// myNums.bubbleSort();
 console.timeEnd("time1");
-print( myNums.toString() );
+// print( myNums.toString() );
 
 print("------------")
 
-myNums.setData();
-print(myNums.toString());
+// myNums.setData();
+// print(myNums.toString());
 console.time("time1");
-myNums.selectionSort();
+// myNums.selectionSort();
 console.timeEnd("time1");
-print(myNums.toString());
+// print(myNums.toString());
 
+print("------------")
+
+// myNums.setData();
+// print(myNums.toString());
+console.time("time1");
+// myNums.insertionSort();
+console.timeEnd("time1");
+// print(myNums.toString());
+
+print("------------")
+
+// myNums.setData();
+// print(myNums.toString());
+console.time("time1");
+// myNums.shellSort();
+console.timeEnd("time1");
+// print(myNums.toString());
+const numElements=8;
+const myNums=new CArray(numElements);
+const arr=[61,85,19,88,68,8,70,29];
+myNums.dataStore=arr;
+
+myNums.shellSort();
+print(myNums.toString());
+print(myNums)
